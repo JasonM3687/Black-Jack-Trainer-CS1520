@@ -1,6 +1,7 @@
 import react from 'react';
 import './App.css'; 
 import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 
 const HomeScreen = () => {
@@ -17,7 +18,15 @@ const HomeScreen = () => {
               <li>You will significantly hone your blackjack skills, preparing you for the real table!</li>
             </ul>
             </header>  
-            <Button className="playButton" variant="contained" color="error" size="large">Play!</Button>
+            <Button 
+              className="playButton" 
+              variant="contained" 
+              color="error" 
+              size="large"
+              component={Link} to="/BlackJack"
+              >
+                Play! 
+              </Button>
             <img src="https://www.blackjackapprenticeship.com/wp-content/uploads/2018/10/mini-blackjack-strategy-chart.png" width="1000"/>
         </div>
       );
