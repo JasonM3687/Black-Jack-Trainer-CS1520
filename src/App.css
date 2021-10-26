@@ -46,6 +46,13 @@
   width: 100%;
 }
 
+.logOutButton {
+  align-items: top;
+  justify-content: right;
+  position: fixed; 
+  width: 100%;
+}
+
 .chartHeader {
   font-size: calc(10px + 2vmin);
   color: white;

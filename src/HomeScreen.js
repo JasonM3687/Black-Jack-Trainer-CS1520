@@ -2,6 +2,7 @@ import react from 'react';
 import './App.css'; 
 import { Button } from '@mui/material';
 import { Link, useHistory } from 'react-router-dom';
+import { getAuth, signOut } from "firebase/auth";
 
 
 
@@ -15,10 +16,28 @@ const HomeScreen = () => {
     history.push('./BlackJack');
   }
 
+  const signOut = () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      // Sign-out successful.
+    }).catch((error) => {
+    // An error happened.
+    });
+  }
+
     return (
         <div className="App">
           <header className="App-header">
             <h1>Welcome to BlackJack Trainer</h1>
+            <Button 
+              className="logOutButton" 
+              variant="contained" 
+              color="error" 
+              size="small"
+              onClick={signOut}
+              >
+                Log out :/ 
+              </Button>
             <br/>
             <div className="image">
               <img src="https://i.ibb.co/6FJ0JGK/561-5611765-all-diamonds-cards-clip-arts-cards-fanned-out.png" className="App-logo" alt="logo" height="300" width="300" onClick={pictureClick}/>
