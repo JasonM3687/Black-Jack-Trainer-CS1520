@@ -55,6 +55,12 @@
   left:550px;
 }
 
+.exitButton
+{ 
+  background-color: rgb(0, 78, 0);
+  float: right;
+}
+
 .game
 {
   height: 100%;

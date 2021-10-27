@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import Status from './Status';
 import Controls from './Controls';
 import Hand from './Hand';
 import jsonData from './deck.json';
+import { Button } from '@mui/material';
 import './App.css';
 
 
@@ -264,6 +266,14 @@ const BlackJack = () => {
 
   return (
     <div className="game">
+      <Button 
+          className="exitButton"
+          variant="contained" 
+          color="error" 
+          component={Link} to="/"
+          >
+          Exit Game 
+      </Button>
       <Status message={message} balance={balance} />
       <Controls
         balance={balance}

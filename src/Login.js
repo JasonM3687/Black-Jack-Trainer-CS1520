@@ -33,8 +33,11 @@ const Login = () => {
 
     return(
         <div className="login">
+            <header className="App-header">
             <h1 className="LoginHeader">Please Login Using Google!</h1>
-            <Button onClick={signIn}>Sign in with Google!</Button>
+            <br/>
+            <Button variant="contained" color="error" onClick={signIn}>Sign in</Button>
+            </header>
         </div>
     )
 }
