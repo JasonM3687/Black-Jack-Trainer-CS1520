@@ -28,17 +28,24 @@ const HomeScreen = ({setIsSignedIn}) => {
     return (
         <div className="App">
           <header className="App-header">
-            <h1>Welcome to BlackJack Trainer</h1>
-            <Button 
-              variant="contained" 
-              color="error" 
-              onClick={logout}
-              >
-                Log out :/ 
-              </Button>
+            <div>
+              <h1>Welcome to BlackJack Trainer</h1>
+              <Button 
+                className="logoutButton"
+                variant="contained" 
+                color="error" 
+                onClick={logout}
+                >
+                  Log out
+                </Button>
+              </div>
             <br/>
+            <div>
+             <img src="https://i.ibb.co/cbCnR6c/chippy-removebg-preview.png" className="chippyLeft" />
+             <img src="https://i.ibb.co/cbCnR6c/chippy-removebg-preview.png" className="chippyRight"/>
+             </div>  
             <div className="image">
-              <img src="https://i.ibb.co/6FJ0JGK/561-5611765-all-diamonds-cards-clip-arts-cards-fanned-out.png" className="App-logo" alt="logo" height="300" width="300" onClick={pictureClick}/>
+              <img src="https://i.ibb.co/NKK1n2m/207-2074612-premium-blackjack-redbubble-jack-of-spades-playing-card-removebg-preview.png" className="App-logo" alt="logo" height="300" width="300" onClick={pictureClick}/>
             </div>
             <br/>
             <p>Welcome to an online web application that can be utilized to train and help memorize basic blackjack strategy.</p>
@@ -57,7 +64,6 @@ const HomeScreen = ({setIsSignedIn}) => {
                 Play! 
               </Button>
               <div className="pageBottom">
-                <h1 className="chartHeader">Basic Strategy Chart</h1>
                 <img className="chartImage"src="https://www.blackjackapprenticeship.com/wp-content/uploads/2018/10/mini-blackjack-strategy-chart.png" width="1000"/>
               </div>
         </div>

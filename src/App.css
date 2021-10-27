@@ -46,13 +46,33 @@
   width: 100%;
 }
 
-.logOutButton {
-  align-items: top;
-  justify-content: right;
-  position: fixed; 
-  width: 100%;
+.logoutButton {
+  width:100px;        
+  position: fixed;
+  z-index:10;        
+  border:1px solid black;   
+  top:-49px;
+  left:550px;
 }
 
+.game
+{
+  height: 100%;
+  background-color: rgb(0, 78, 0);
+}
+.chippyRight {
+  position: fixed;
+  top:200px;
+  left:1150px;
+  width:130px; 
+}
+
+.chippyLeft {
+  position: fixed;
+  top:200px;
+  right:1150px;
+  width:130px; 
+}
 .chartHeader {
   font-size: calc(10px + 2vmin);
   color: white;

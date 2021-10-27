@@ -2,6 +2,7 @@ import react from 'react';
 import { Button } from '@mui/material';
 import fire from './FirebaseConfig';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import './App.css'
 
 
 
@@ -31,7 +32,10 @@ const Login = () => {
     }
 
     return(
-        <Button onClick={signIn}>Sign in with Google!</Button>
+        <div className="login">
+            <h1 className="LoginHeader">Please Login Using Google!</h1>
+            <Button onClick={signIn}>Sign in with Google!</Button>
+        </div>
     )
 }
 export default Login; 

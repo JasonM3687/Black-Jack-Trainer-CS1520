@@ -3,12 +3,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import HomeScreen from './HomeScreen';
 import BlackJack from './BlackJack';
 import Login from './Login';
-import fire from './FirebaseConfig';
 import { getAuth, onAuthStateChanged} from "firebase/auth";
 
 function App() {
@@ -30,7 +28,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <HomeScreen/>
+            <HomeScreen setIsSignedIn={setIsSignedIn} />
           </Route>
           <Route exact path="/BlackJack">
             <BlackJack/>
