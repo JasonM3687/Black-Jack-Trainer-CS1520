@@ -2,11 +2,11 @@ import react from 'react';
 import './App.css'; 
 import { Button } from '@mui/material';
 import { Link, useHistory } from 'react-router-dom';
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut, GoogleAuthProvider } from "firebase/auth";
 
 
 
-const HomeScreen = () => {
+const HomeScreen = ({setIsSignedIn}) => {
 
   //instance variables
   const history = useHistory();
@@ -16,10 +16,10 @@ const HomeScreen = () => {
     history.push('./BlackJack');
   }
 
-  const signOut = () => {
+  const logout = () => {
     const auth = getAuth();
     signOut(auth).then(() => {
-      // Sign-out successful.
+      return setIsSignedIn(false);
     }).catch((error) => {
     // An error happened.
     });
@@ -30,11 +30,9 @@ const HomeScreen = () => {
           <header className="App-header">
             <h1>Welcome to BlackJack Trainer</h1>
             <Button 
-              className="logOutButton" 
               variant="contained" 
               color="error" 
-              size="small"
-              onClick={signOut}
+              onClick={logout}
               >
                 Log out :/ 
               </Button>
