@@ -286,6 +286,8 @@ const BlackJack = () => {
       />
       <Hand title={`Dealer's Hand (${dealerScore})`} cards={dealerCards} />
       <Hand title={`Your Hand (${userScore})`} cards={userCards} />
+      <img src="https://i.ibb.co/cbCnR6c/chippy-removebg-preview.png" className="chippyRight"/>
+      <p className="trainerChippy">Trainer Chippy</p>
     </div>
   );
 }

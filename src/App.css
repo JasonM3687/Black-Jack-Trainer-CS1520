@@ -57,13 +57,14 @@
 
 .exitButton
 { 
-  background-color: rgb(0, 78, 0);
   float: right;
 }
 
 .game
 {
   height: 100%;
+  min-height: '100vh';
+  min-width: '100vh';
   background-color: rgb(0, 78, 0);
 }
 .chippyRight {
@@ -77,6 +78,21 @@
   position: fixed;
   top:200px;
   right:1150px;
+  width:130px; 
+}
+.trainerChippyPosition
+{
+  position: fixed;
+  top:200px;
+  left:1150px;
+  width:130px; 
+}
+.trainerChippy
+{
+  color: red;
+  position: fixed;
+  top:300px;
+  left:1165px;
   width:130px; 
 }
 .chartHeader {

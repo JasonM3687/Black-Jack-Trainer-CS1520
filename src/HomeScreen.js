@@ -39,7 +39,6 @@ const HomeScreen = ({setIsSignedIn}) => {
                   Log out
                 </Button>
               </div>
-            <br/>
             <div>
              <img src="https://i.ibb.co/cbCnR6c/chippy-removebg-preview.png" className="chippyLeft" />
              <img src="https://i.ibb.co/cbCnR6c/chippy-removebg-preview.png" className="chippyRight"/>
@@ -48,9 +47,9 @@ const HomeScreen = ({setIsSignedIn}) => {
               <img src="https://i.ibb.co/NKK1n2m/207-2074612-premium-blackjack-redbubble-jack-of-spades-playing-card-removebg-preview.png" className="App-logo" alt="logo" height="300" width="300" onClick={pictureClick}/>
             </div>
             <br/>
-            <p>Welcome to an online web application that can be utilized to train and help memorize basic blackjack strategy.</p>
+            <p>Welcome to an online web application that can be utilized to train and help memorize basic blackjack strategy</p>
             <ul>
-              <li>You will receive strategy recommendations based on the basic strategy chart</li>
+              <li>You will receive strategy recommendations based on the basic strategy chart below</li>
               <li>You will significantly hone your blackjack skills, preparing you for the real table!</li>
             </ul>
             </header>  
