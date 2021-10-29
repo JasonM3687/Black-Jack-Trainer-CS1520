@@ -48,6 +48,7 @@ const HomeScreen = ({setIsSignedIn}) => {
             </div>
             <br/>
             <p>Welcome to an online web application that can be utilized to train and help memorize basic blackjack strategy</p>
+            <br/>
             <ul>
               <li>You will receive strategy recommendations based on the basic strategy chart below</li>
               <li>You will significantly hone your blackjack skills, preparing you for the real table!</li>

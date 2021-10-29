@@ -37,12 +37,12 @@
 }
 
 .logoutButton {
-  width: 20%;        
+  width: 17%;        
   position: fixed;
   z-index: 10;        
   border:1px solid black;   
   top: -49px;
-  left: 102%;
+  left: 90%;
 }
 
 .exitButton { 
@@ -59,21 +59,21 @@
 .chippyRight {
   position: fixed;
   top: 34%;
-  left: 89.5%;
-  width: 10%; 
+  left: 92%;
+  width: 8%; 
 }
 
 .chippyLeft {
   position: fixed;
   top: 34%;
-  right: 90%;
-  width: 10%; 
+  right: 92%;
+  width: 8%; 
 }
 
 .trainerChippy {
   color: white;
   position: fixed;
-  top:49%;
+  top:46%;
   left: 91.5%;
   width: 10%;
 }

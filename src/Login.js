@@ -1,5 +1,6 @@
 import react from 'react'; 
 import { Button } from '@mui/material';
+import fire from './FirebaseConfig';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import './App.css'
 
