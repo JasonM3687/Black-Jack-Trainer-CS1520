@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Status from './Status';
 import Controls from './Controls';
 import Hand from './Hand';
