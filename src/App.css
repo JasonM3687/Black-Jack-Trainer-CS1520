@@ -78,6 +78,26 @@
   width: 10%;
 }
 
+.chippyHit1 {
+  position: fixed;
+  top: 28%;
+  left: 74%;
+  width: 16.5%; 
+}
+
+.chippyStand1 {
+  position: fixed;
+  top: 27%;
+  left: 74%;
+  width: 18%; 
+}
+.problem {
+  position: fixed;
+  top: 79%;
+  left: 90%;
+  width: 10%; 
+}
+
 .chartImage {
   top: 50px;
 }
