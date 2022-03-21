@@ -1,0 +1,112 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: all;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.playButton {
+  align-items: center;
+  justify-content: center;
+  position: fixed; 
+  width: 100%;
+}
+
+.logoutButton {
+  width: 17%;        
+  position: fixed;
+  z-index: 10;        
+  border:1px solid black;   
+  top: -49px;
+  left: 90%;
+}
+
+.exitButton { 
+  float: right;
+}
+
+.game {
+  height: 100%;
+  min-height: '100vh';
+  min-width: '100vh';
+  background-color: rgb(0, 78, 0);
+}
+
+.chippyRight {
+  position: fixed;
+  top: 34%;
+  left: 92%;
+  width: 8%; 
+}
+
+.chippyLeft {
+  position: fixed;
+  top: 34%;
+  right: 92%;
+  width: 8%; 
+}
+
+.chippyBJ {
+  position: fixed;
+  top: 40%;
+  left: 92%;
+  width: 8%; 
+}
+
+.trainerChippy {
+  color: white;
+  position: fixed;
+  top: 52%;
+  left: 91.5%;
+  width: 10%;
+}
+
+.chippySays {
+  position: fixed;
+  top: 32.5%;
+  left: 74%;
+  width: 18%; 
+}
+.problem {
+  position: fixed;
+  top: 79%;
+  left: 90%;
+  width: 10%; 
+}
+
+.chartImage {
+  top: 50px;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
