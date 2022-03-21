@@ -70,24 +70,24 @@
   width: 8%; 
 }
 
+.chippyBJ {
+  position: fixed;
+  top: 40%;
+  left: 92%;
+  width: 8%; 
+}
+
 .trainerChippy {
   color: white;
   position: fixed;
-  top:46%;
+  top: 52%;
   left: 91.5%;
   width: 10%;
 }
 
-.chippyHit1 {
+.chippySays {
   position: fixed;
-  top: 28%;
-  left: 74%;
-  width: 16.5%; 
-}
-
-.chippyStand1 {
-  position: fixed;
-  top: 27%;
+  top: 32.5%;
   left: 74%;
   width: 18%; 
 }

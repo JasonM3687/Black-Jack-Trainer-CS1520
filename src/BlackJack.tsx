@@ -24,12 +24,13 @@ const BlackJack = () => {
   }
 
   enum Message {
-    bet = 'Place a Bet!',
-    hitStand = 'Hit or Stand?',
-    bust = 'Bust!',
-    userWin = 'You Win!',
-    dealerWin = 'Dealer Wins!',
-    tie = 'Tie!'
+    bet = 'Place your bet!',
+    hitStand = 'Make a move!',
+    bust = 'You busted ): !',
+    userWin = 'Congratulations! You Win!',
+    dealerWin = 'Dealer wins, better luck next time!',
+    tie = 'Its a push!',
+    double = 'Sorry, you are broke, you can not double!'
   }
 
   const data = JSON.parse(JSON.stringify(jsonData.cards));
@@ -46,11 +47,13 @@ const BlackJack = () => {
   const [balance, setBalance] = useState(100);
   const [bet, setBet] = useState(0);
 
+  const [doubleTrue, setDoubleTrue] = useState(false); 
   const [gameState, setGameState] = useState(GameState.bet);
   const [message, setMessage] = useState(Message.bet);
   const [buttonState, setButtonState] = useState({
     hitDisabled: false,
     standDisabled: false,
+    doubleDisabled: false,
     resetDisabled: true
   });
 
@@ -79,6 +82,7 @@ const BlackJack = () => {
     if (gameState === GameState.userTurn) {
       if (userScore === 21) {
         buttonState.hitDisabled = true;
+        buttonState.doubleDisabled = true; 
         setButtonState({ ...buttonState });
       }
       else if (userScore > 21) {
@@ -117,6 +121,7 @@ const BlackJack = () => {
     setButtonState({
       hitDisabled: false,
       standDisabled: false,
+      doubleDisabled: false,
       resetDisabled: true
     });
   }
@@ -230,12 +235,37 @@ const BlackJack = () => {
   }
 
   const hit = () => {
+    buttonState.doubleDisabled = true; 
     drawCard(Deal.user);
   }
 
+  const double = () => {
+    if (balance - (bet) >= 0)
+    {
+      drawCard(Deal.user);
+      setBet(bet * 2.00);
+      setDoubleTrue(true);
+      setBalance(Math.round((balance - bet) * 100) / 100);
+      buttonState.hitDisabled = true;
+      buttonState.standDisabled = true;
+      buttonState.doubleDisabled = true; 
+      buttonState.resetDisabled = false;
+      setButtonState({ ...buttonState });
+      setGameState(GameState.dealerTurn);
+      revealCard();
+    }
+    else
+    {
+      setMessage(Message.double);
+    }
+    
+    
+  }
+  
   const stand = () => {
     buttonState.hitDisabled = true;
     buttonState.standDisabled = true;
+    buttonState.doubleDisabled = true; 
     buttonState.resetDisabled = false;
     setButtonState({ ...buttonState });
     setGameState(GameState.dealerTurn);
@@ -245,22 +275,62 @@ const BlackJack = () => {
   const bust = () => {
     buttonState.hitDisabled = true;
     buttonState.standDisabled = true;
+    buttonState.doubleDisabled = true; 
     buttonState.resetDisabled = false;
     setButtonState({ ...buttonState });
     setMessage(Message.bust);
   }
 
   const checkWin = () => {
-    if (userScore > dealerScore || dealerScore > 21) {
-      setBalance(Math.round((balance + (bet * 2)) * 100) / 100);
-      setMessage(Message.userWin);
+    if (doubleTrue == true)
+    {
+      
+      if (dealerScore == 21 && userScore != 21)
+      {
+        setMessage(Message.dealerWin);
+      }
+      else if (userScore > 21 && dealerScore < 21){
+        setMessage(Message.dealerWin);
+      }
+      else if (dealerScore > userScore && userScore < 21 && dealerScore < 21){
+        setMessage(Message.dealerWin);
+      }
+      else if (dealerScore > userScore && userScore > 21) {
+        setMessage(Message.dealerWin);
+      }
+      else if (dealerScore < userScore && dealerScore > 21 && userScore > 21 ) {
+        setMessage(Message.dealerWin);
+      }
+      else if (userScore > 21 && dealerScore > 21)
+      {
+        setMessage(Message.dealerWin);
+      }
+      else if (userScore > dealerScore && userScore <= 21) {
+        setBalance(Math.round((balance + (bet * 2)) * 100) / 100);
+        setMessage(Message.userWin);
+      }
+      else if (userScore > dealerScore || dealerScore > 21 || userScore == 21) {
+        setBalance(Math.round((balance + (bet * 2)) * 100) / 100);
+        setMessage(Message.userWin);
+      }
+      else {
+        setBalance(Math.round((balance + (bet * 1)) * 100) / 100);
+        setMessage(Message.tie);
+      }
     }
-    else if (dealerScore > userScore) {
-      setMessage(Message.dealerWin);
-    }
-    else {
-      setBalance(Math.round((balance + (bet * 1)) * 100) / 100);
-      setMessage(Message.tie);
+    else
+    {
+      if (userScore > dealerScore || dealerScore > 21) {
+        setBalance(Math.round((balance + (bet * 2)) * 100) / 100);
+        setMessage(Message.userWin);
+      }
+      else if (dealerScore > userScore) {
+        setMessage(Message.dealerWin);
+      }
+      else {
+        setBalance(Math.round((balance + (bet * 1)) * 100) / 100);
+        setMessage(Message.tie);
+      }
     }
   }
 
@@ -905,7 +975,102 @@ const BlackJack = () => {
     }
 
   }
-  if (chippySaysHit() == true)
+
+  const chippySaysDouble = () => {
+    // User has 9
+    if (userScore == 9 && dealerScore == 3)
+    {
+      return true; 
+    }
+    else if (userScore == 9 && dealerScore == 4)
+    {
+      return true; 
+    }
+    else if (userScore == 9 && dealerScore == 5)
+    {
+      return true; 
+    }
+    else if (userScore == 9 && dealerScore == 6)
+    {
+      return true; 
+    }
+    // User has 10
+    else if (userScore == 10 && dealerScore == 2)
+    {
+      return true;
+    }
+    else if (userScore == 10 && dealerScore == 3)
+    {
+      return true;
+    }
+    else if (userScore == 10 && dealerScore == 4)
+    {
+      return true;
+    }
+    else if (userScore == 10 && dealerScore == 5)
+    {
+      return true;
+    }
+    else if (userScore == 10 && dealerScore == 6)
+    {
+      return true;
+    }
+    else if (userScore == 10 && dealerScore == 7)
+    {
+      return true;
+    }
+    else if (userScore == 10 && dealerScore == 8)
+    {
+      return true;
+    }
+    else if (userScore == 10 && dealerScore == 9)
+    {
+      return true;
+    }
+    // User has 11
+    else if (userScore == 11 && dealerScore == 2)
+    {
+      return true;
+    }
+    else if (userScore == 11 && dealerScore == 3)
+    {
+      return true;
+    }
+    else if (userScore == 11 && dealerScore == 4)
+    {
+      return true;
+    }
+    else if (userScore == 11 && dealerScore == 5)
+    {
+      return true;
+    }
+    else if (userScore == 11 && dealerScore == 6)
+    {
+      return true;
+    }
+    else if (userScore == 11 && dealerScore == 7)
+    {
+      return true;
+    }
+    else if (userScore == 11 && dealerScore == 8)
+    {
+      return true;
+    }
+    else if (userScore == 11 && dealerScore == 9)
+    {
+      return true;
+    }
+    else if (userScore == 11 && dealerScore == 10)
+    {
+      return true;
+    }
+    else if (userScore == 11 && dealerScore == 11)
+    {
+      return true;
+    }
+
+  }
+  if (chippySaysDouble() == true)
   {
     return (
       <div className="game">
@@ -924,13 +1089,14 @@ const BlackJack = () => {
           buttonState={buttonState}
           betEvent={placeBet}
           hitEvent={hit}
+          doubleEvent={double}
           standEvent={stand}
           resetEvent={resetGame}
         />
         <Hand title={`Dealer's Hand (${dealerScore})`} cards={dealerCards} />
         <Hand title={`Your Hand (${userScore})`} cards={userCards} />
-        <img src="https://i.ibb.co/cbCnR6c/chippy-removebg-preview.png" className="chippyRight"/>
-        <img src="https://i.ibb.co/NT2GCD5/newHit.png" className="chippyHit1"/>
+        <img src="https://i.ibb.co/cbCnR6c/chippy-removebg-preview.png" className="chippyBJ"/>
+        <img src="https://i.ibb.co/yf8X5hW/double-Down.png" className="chippySays"/>
         <img src="https://i.ibb.co/Nr4cmgW/1800.jpg" className="problem" onClick={ProblemOnClick}/>
         <p className="trainerChippy">Trainer Chippy</p>
       </div>
@@ -955,13 +1121,46 @@ const BlackJack = () => {
           buttonState={buttonState}
           betEvent={placeBet}
           hitEvent={hit}
+          doubleEvent={double}
           standEvent={stand}
           resetEvent={resetGame}
         />
         <Hand title={`Dealer's Hand (${dealerScore})`} cards={dealerCards} />
         <Hand title={`Your Hand (${userScore})`} cards={userCards} />
-        <img src="https://i.ibb.co/cbCnR6c/chippy-removebg-preview.png" className="chippyRight"/>
-        <img src="https://i.ibb.co/W0FGNKD/chippy-stand1.png" className="chippyStand1"/>
+        <img src="https://i.ibb.co/cbCnR6c/chippy-removebg-preview.png" className="chippyBJ"/>
+        <img src="https://i.ibb.co/W0FGNKD/chippy-stand1.png" className="chippySays"/>
+        <img src="https://i.ibb.co/Nr4cmgW/1800.jpg" className="problem" onClick={ProblemOnClick}/>
+        <p className="trainerChippy">Trainer Chippy</p>
+      </div>
+    );
+  }
+  else if (chippySaysHit() == true)
+  {
+    return (
+      <div className="game">
+        <Button 
+            className="exitButton"
+            variant="contained" 
+            color="error" 
+            component={Link} to="/"
+            >
+            Exit Game 
+        </Button>
+        <Status message={message} balance={balance} />
+        <Controls
+          balance={balance}
+          gameState={gameState}
+          buttonState={buttonState}
+          betEvent={placeBet}
+          hitEvent={hit}
+          doubleEvent={double}
+          standEvent={stand}
+          resetEvent={resetGame}
+        />
+        <Hand title={`Dealer's Hand (${dealerScore})`} cards={dealerCards} />
+        <Hand title={`Your Hand (${userScore})`} cards={userCards} />
+        <img src="https://i.ibb.co/cbCnR6c/chippy-removebg-preview.png" className="chippyBJ"/>
+        <img src="https://i.ibb.co/NT2GCD5/newHit.png" className="chippySays"/>
         <img src="https://i.ibb.co/Nr4cmgW/1800.jpg" className="problem" onClick={ProblemOnClick}/>
         <p className="trainerChippy">Trainer Chippy</p>
       </div>
@@ -984,12 +1183,13 @@ const BlackJack = () => {
         buttonState={buttonState}
         betEvent={placeBet}
         hitEvent={hit}
+        doubleEvent={double}
         standEvent={stand}
         resetEvent={resetGame}
       />
       <Hand title={`Dealer's Hand (${dealerScore})`} cards={dealerCards} />
       <Hand title={`Your Hand (${userScore})`} cards={userCards} />
-      <img src="https://i.ibb.co/cbCnR6c/chippy-removebg-preview.png" className="chippyRight"/>
+      <img src="https://i.ibb.co/cbCnR6c/chippy-removebg-preview.png" className="chippyBJ"/>
       <img src="https://i.ibb.co/Nr4cmgW/1800.jpg" className="problem" onClick={ProblemOnClick}/>
       <p className="trainerChippy">Trainer Chippy</p>
     </div>

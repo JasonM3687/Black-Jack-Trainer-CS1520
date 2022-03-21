@@ -7,11 +7,12 @@ type ControlsProps = {
     buttonState: any,
     betEvent: any,
     hitEvent: any,
+    doubleEvent: any,
     standEvent: any,
     resetEvent: any
   };
   
-  const Controls: React.FC<ControlsProps> = ({ balance, gameState, buttonState, betEvent, hitEvent, standEvent, resetEvent }) => {
+  const Controls: React.FC<ControlsProps> = ({ balance, gameState, buttonState, betEvent, hitEvent, doubleEvent, standEvent, resetEvent }) => {
     const [amount, setAmount] = useState(10);
     const [inputStyle, setInputStyle] = useState(styles.input);
   
@@ -59,6 +60,7 @@ type ControlsProps = {
           <div className={styles.controlsContainer}>
             <button onClick={() => hitEvent()} disabled={buttonState.hitDisabled} className={styles.button}>Hit</button>
             <button onClick={() => standEvent()} disabled={buttonState.standDisabled} className={styles.button}>Stand</button>
+            <button onClick={() => doubleEvent()} disabled={buttonState.doubleDisabled} className={styles.button}>Double</button>
             <button onClick={() => resetEvent()} disabled={buttonState.resetDisabled} className={styles.button}>Reset</button>
           </div>
         );
